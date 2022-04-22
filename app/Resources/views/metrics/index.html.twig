@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div class="container">
+            Metryki
+            <hr/>
+
+            {% if app.session.get('project')   %}
+                <div class="alert alert-success" role="alert">
+                    Projekt '{{ app.session.get('project') }}' jest ustawiony na domyślny.
+                </div>
+            {% endif %}
+
+            {% for message in app.flashes('errors') %}
+                <div class="alert alert-warning" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="row">
+                <div class="col">
+                    <figure class="photo">
+                        <a data-toggle="tooltip" title="Non-Comment Lines of Code"><img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa"></a>
+                        {{ ncloc["metric"] }} {{ ncloc["value"] }}
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ lines["metric"] }} {{ lines["value"] }}
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ comments["metric"] }} {{ comments["value"] }}
+                    </figure>
+                </div>
+
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ files["metric"] }} {{ files["value"] }}
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ directories["metric"] }} {{ directories["value"] }}
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ comment_lines["metric"] }} {{ comment_lines["value"] }}
+                    </figure>
+                </div>
+
+
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ classes["metric"] }} {{ classes["value"] }}
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ duplicated_blocks["metric"] }} {{ duplicated_blocks["value"] }}
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="photo">
+                        <img src="{{ asset("image/line-chart.png") }}" alt="Sala szkoleniowa">
+                        {{ complexity["metric"] }} {{ complexity["value"] }}
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

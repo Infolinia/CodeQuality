@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container">
+    Projekty
+    <hr/>
+
+    {% if app.session.get('project')   %}
+        <div class="alert alert-success" role="alert">
+            Projekt '{{ app.session.get('project') }}' jest ustawiony na domyślny.
+        </div>
+    {% endif %}
+
+    {% for message in app.flashes('errors') %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        {% for project in projects %}
+            <div class="col">
+                <figure class="photo">
+                    <a href="/projects/{{ project }}" data-toggle="tooltip">
+                        {% if (app.session.get('project') == project)   %}
+                            <img style="opacity: 1" src="{{ asset("image/line-chart.png") }}">
+                        {% else %}
+                            <img style="opacity: 0.5" src="{{ asset("image/line-chart.png") }}">
+                        {% endif %}
+                    </a>
+                    {{ loop.index }}. {{ project }}
+                </figure>
+
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
